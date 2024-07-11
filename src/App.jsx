@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Box, ChakraProvider } from "@chakra-ui/react";
+import "./App.css";
+import Home from "./components/Home";
+import NavBar from "./components/NavBar";
+import Hero from "./components/Hero";
+import TopNav from "./components/TopNav";
+import Brands from "./components/Brands";
+import ProductSection from "./components/ProductSection";
+import Statistics from "./components/Statistics";
+import Footer from "./components/Footer";
+import Testimonies from "./components/Testimonies";
+import ProductDetail from "./components/ProductDetail";
+import CartPage from "./components/CartPage";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <ChakraProvider>
+        <Router>
+          <Box display={{ base: "none", md: "block" }}>
+            <TopNav />
+          </Box>
+          <NavBar />
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/hero" element={<Hero />} />
+              <Route path="/brands" element={<Brands />} />
+              <Route path="/product" element={<ProductSection />} />
+              <Route path="/statistics" element={<Statistics />} />
+              <Route path="/footer" element={<Footer />} />
+              <Route path="/testimonies" element={<Testimonies />} />
+              <Route path="/product_detail" element={<ProductDetail />} />
+              <Route path="/cart_page" element={<CartPage />} />
+            </Routes>
+          </main>
+        </Router>
+      </ChakraProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
