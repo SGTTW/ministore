@@ -8,6 +8,7 @@ import {
   Text,
   Button,
   Image,
+  HStack
 } from "@chakra-ui/react";
 import heroFoot from "../assets/Images/foot.png";
 import { Link } from "react-router-dom";
@@ -30,16 +31,18 @@ const Hero = () => {
               Exclusively for sneakerheads of all ages, gender, and the rest of
               humanity
             </Text>
-            <Link to="/product_detail">
-              <Button
-                colorScheme={"green"}
-                size="lg"
-                px={8}
-                _hover={{ bg: "green.600" }}
-              >
-                Explore
-              </Button>
-            </Link>
+            <HStack>
+              <Link to="/product_detail">
+                <Button
+                  colorScheme={"green"}
+                  size="lg"
+                  px={8}
+                  _hover={{ bg: "green.600" }}
+                >
+                  Explore
+                </Button>
+              </Link>
+            </HStack>
           </Box>
           <Box maxW={{ base: "100%", md: "45%" }}>
             <Image src={heroFoot} alt="Sneakers" objectFit="cover" w="full" />

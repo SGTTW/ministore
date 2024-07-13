@@ -10,22 +10,24 @@ import {
   Text,
   Button,
   Select,
-  Link,
   Icon,
   Grid,
 } from "@chakra-ui/react";
 import { FaChevronLeft } from "react-icons/fa";
 import { CiStar } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 import product_detail from "../assets/Images/adidas.png";
 
 const ProductDetail = () => {
   return (
     <Container maxW="container.xl" py={8} color={"black"}>
-      <Link href="/" mb={4} display="flex" alignItems="center">
-        <Icon as={FaChevronLeft} />
-        Back to Homepage
-      </Link>
+      <HStack  mb={4} display="flex" alignItems="center">
+          <Link to="/">
+            <Icon as={FaChevronLeft} />
+            Back to Homepage
+          </Link>
+      </HStack>
 
       <Flex direction={{ base: "column", md: "row" }} gap={6}>
         <VStack align="stretch" flex={1} spacing={4}>
