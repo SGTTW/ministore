@@ -1,9 +1,18 @@
 import React from "react";
-import { Box, Text, Button, Flex, Image } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  Button,
+  Flex,
+  Image,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import leftImage from "../assets/Images/leftImage.png";
 import rightImage from "../assets/Images/rightImage.png";
 
 const Statistics = () => {
+  const [isMobile] = useMediaQuery("(max-width: 48em)");
+
   return (
     <Box
       bg="#C9D4C5"
@@ -19,14 +28,14 @@ const Statistics = () => {
         alignItems="center"
         justifyContent="center"
         position="relative"
-        minHeight="200px"
+        minHeight={isMobile ? "auto" : "200px"}
       >
         <Box
           bg="green.700"
           color="white"
           p={6}
           borderRadius="md"
-          maxWidth="70%"
+          maxWidth={isMobile ? "100%" : "70%"}
           zIndex={1}
           textAlign="center"
         >
@@ -38,28 +47,32 @@ const Statistics = () => {
           </Button>
         </Box>
 
-        <Image
-          src={leftImage}
-          alt="Left shoe"
-          position="absolute"
-          left="-20px"
-          top={"-15px"}
-          bottom="0"
-          height="120%"
-          objectFit="contain"
-          zIndex={0}
-        />
+        {!isMobile && (
+          <>
+            <Image
+              src={leftImage}
+              alt="Left shoe"
+              position="absolute"
+              left="-20px"
+              top={"-15px"}
+              bottom="0"
+              height="120%"
+              objectFit="contain"
+              zIndex={0}
+            />
 
-        <Image
-          src={rightImage}
-          alt="Right shoe"
-          position="absolute"
-          right="-20px"
-          bottom="0"
-          height="120%"
-          objectFit="contain"
-          zIndex={0}
-        />
+            <Image
+              src={rightImage}
+              alt="Right shoe"
+              position="absolute"
+              right="-20px"
+              bottom="0"
+              height="120%"
+              objectFit="contain"
+              zIndex={0}
+            />
+          </>
+        )}
       </Flex>
     </Box>
   );

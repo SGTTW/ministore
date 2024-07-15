@@ -1,108 +1,134 @@
-import { Box, Flex, VStack, Text, Link, Image,Button, } from "@chakra-ui/react";
-import leftImage from "../assets/Images/leftImage.png"
-import rightImage from "../assets/Images/rightImage.png"
+import React from "react";
+import {
+  Box,
+  Flex,
+  VStack,
+  Text,
+  Link,
+  Image,
+  useMediaQuery,
+} from "@chakra-ui/react";
+import leftImage from "../assets/Images/leftImage.png";
+import rightImage from "../assets/Images/rightImage.png";
+import logoImage from "../assets/Images/logo.png"; // Make sure to import your logo
+
 function Footer() {
+  const [isMobile] = useMediaQuery("(max-width: 48em)");
+
+  const footerSections = [
+    {
+      title: "About Us",
+      links: [
+        "Our Story",
+        "Contact",
+        "Careers",
+        "News and Blog",
+        "Press",
+        "Advertise and Partners",
+      ],
+    },
+    {
+      title: "Services",
+      links: [
+        "Gift Cards",
+        "Mobile App",
+        "Shipping and Delivery",
+        "Order Pickup",
+        "Account Signup",
+      ],
+    },
+    {
+      title: "Help",
+      links: [
+        "Help Center",
+        "Returns",
+        "Track Orders",
+        "Size Charts",
+        "Contact Us",
+        "Security and Fraud",
+      ],
+    },
+    {
+      title: "Social",
+      links: ["Instagram", "Twitter", "Facebook", "Pinterest", "Blog"],
+    },
+  ];
+
   return (
     <Box
-    bg="#C9D4C5"
-    py={8}
-    px={8}
-    position="relative"
-    overflow="hidden"
-    my={8}
-  >
-    <Flex
-      maxW="container.xl"
-      mx="auto"
-      alignItems="center"
-      justifyContent="center"
+      bg="#C9D4C5"
+      py={8}
+      px={8}
       position="relative"
-      minHeight="200px"
+      overflow="hidden"
+      my={8}
     >
+      <Flex
+        maxW="container.xl"
+        mx="auto"
+        alignItems="center"
+        justifyContent="center"
+        position="relative"
+        minHeight="200px"
+        flexDirection={isMobile ? "column" : "row"}
+      >
+        {isMobile ? (
+          <VStack spacing={6} align="center" width="100%">
+            <Image src={logoImage} alt="Brand Logo" width="150px" />
+            {footerSections.map((section, index) => (
+              <Text key={index} fontWeight="bold" fontSize="lg">
+                {section.title}
+              </Text>
+            ))}
+          </VStack>
+        ) : (
+          <Box as="footer" color={"black"} bg={"none"} width="100%">
+            <Flex
+              maxW="container.xl"
+              mx="auto"
+              justifyContent="space-between"
+              gap={4}
+            >
+              {footerSections.map((section, index) => (
+                <VStack key={index} align="flex-start">
+                  <Text fontWeight="bold">{section.title}</Text>
+                  {section.links.map((link, linkIndex) => (
+                    <Link key={linkIndex}>{link}</Link>
+                  ))}
+                </VStack>
+              ))}
+            </Flex>
+          </Box>
+        )}
 
-
-
-
-
-
-<Box as="footer"   color={"black"} bg={"none"}   >
-      <Flex maxW="container.xl" mx="auto" justifyContent="space-between" gap={4}>
-        <VStack align="flex-start">
-          <Text fontWeight="bold">About Us</Text>
-          <Link>Our Story</Link>
-          <Link>Contact</Link>
-          <Link>Careers</Link>
-          <Link>News and Blog</Link>
-          <Link>Press</Link>
-          <Link>Advertise and Partners</Link>
-        </VStack>
-        
-        <VStack align="flex-start">
-          <Text fontWeight="bold">Services</Text>
-          <Link>Gift Cards</Link>
-          <Link>Mobile App</Link>
-          <Link>Shipping and Delivery</Link>
-          <Link>Order Pickup</Link>
-          <Link>Account Signup</Link>
-        </VStack>
-        
-        <VStack align="flex-start">
-          <Text fontWeight="bold">Help</Text>
-          <Link>Help Center</Link>
-          <Link>Returns</Link>
-          <Link>Track Orders</Link>
-          <Link>Size Charts</Link>
-          <Link>Contact Us</Link>
-          <Link>Security and Fraud</Link>
-        </VStack>
-        
-        <VStack align="flex-start">
-          <Text fontWeight="bold">Social</Text>
-          <Link>Instagram</Link>
-          <Link>Twitter</Link>
-          <Link>Facebook</Link>
-          <Link>Pinterest</Link>
-          <Link>Blog</Link>
-        </VStack>
+        {!isMobile && (
+          <>
+            <Image
+              src={leftImage}
+              alt="Left shoe"
+              position="absolute"
+              left="-20px"
+              top={"-15px"}
+              bottom="0"
+              height="120%"
+              objectFit="contain"
+              zIndex={0}
+            />
+            <Image
+              src={rightImage}
+              alt="Right shoe"
+              position="absolute"
+              right="-20px"
+              bottom="0"
+              height="120%"
+              objectFit="contain"
+              zIndex={0}
+            />
+          </>
+        )}
       </Flex>
-      
-      </Box>
-
-
-
-
-
-
-
-
-
-
-      <Image
-        src={leftImage}
-        alt="Left shoe"
-        position="absolute"
-        left="-20px"
-        top={"-15px"}
-        bottom="0"
-        height="120%"
-        objectFit="contain"
-        zIndex={0}
-      />
-
-      <Image
-        src={rightImage}
-        alt="Right shoe"
-        position="absolute"
-        right="-20px"
-        bottom="0"
-        height="120%"
-        objectFit="contain"
-        zIndex={0}
-      />
-    </Flex>
-  </Box>
+    </Box>
   );
 }
 
 export default Footer;
-

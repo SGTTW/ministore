@@ -109,6 +109,89 @@
 //   },
 // });
 
+// import { defineConfig } from 'vite'
+// import react from '@vitejs/plugin-react'
+
+// // https://vitejs.dev/config/
+// export default defineConfig({
+//   plugins: [react()],
+// })
+
+// import { defineConfig } from 'vite'
+// import react from '@vitejs/plugin-react'
+
+// export default defineConfig({
+//   plugins: [react()],
+//   server: {
+//     proxy: {
+//       '/api': {
+//         target: 'https://app.timbu.cloud',
+//         changeOrigin: true,
+//         rewrite: (path) => path.replace(/^\/api/, '')
+//       }
+//     }
+//   }
+// })
+
+// import { defineConfig } from 'vite'
+// import react from '@vitejs/plugin-react'
+
+// export default defineConfig({
+//   plugins: [react()],
+//   server: {
+//     proxy: {
+//       '/api': {
+//         target: 'https://api.timbu.cloud',
+//         changeOrigin: true,
+//         rewrite: (path) => path.replace(/^\/api/, '')
+//       }
+//     }
+//   }
+// })
+
+// modified app!=api
+
+// import { defineConfig } from "vite";
+// import react from "@vitejs/plugin-react";
+
+// // https://vitejs.dev/config/
+// export default defineConfig({
+//   plugins: [react()],
+//   server: {
+//     proxy: {
+//       "/api": {
+//         target: "https://api.timbu.cloud",
+//         changeOrigin: true,
+//         rewrite: (path) => path.replace(/^\/api/, ""),
+//       },
+//     },
+//   },
+// });
+
+// ---------c;iaI
+// import { defineConfig } from "vite";
+// import react from "@vitveis plugin-react";
+
+// export default defineConfig({
+//   plugins: [react()],
+//   server: {
+//     proxy: {
+//       "/api": {
+//         target: "https://api.timbu.cloud",
+//         changeOrigin: true,
+//         rewrite: (path) => path.replace(/^\/api/, ""),
+//         configure: (proxy, _options) => {
+//           proxy.on('proxyReq', (proxyReq, req, _res) => {
+//             Object.keys(req.headers).forEach(function (key) {
+//               proxyReq.setHeader(key, req.headers[key]);
+//             });
+//           });
+//         },
+//       },
+//     },
+//   },
+// });
+
 
 
 
@@ -169,6 +252,362 @@ export default useProducts;
 
 
 // --------------brands
+
+
+// // import React from "react";
+// // import {
+// //   Box,
+// //   Container,
+// //   Heading,
+// //   Image,
+// //   Flex,
+// //   Text,
+// //   Button,
+// //   Wrap,
+// //   WrapItem,
+// //   Center,
+// //   Card,
+// //   CardBody,
+// //   CardFooter,
+// //   Divider,
+// //   Spinner,
+// // } from "@chakra-ui/react";
+
+// // import adidas from "../assets/Images/adidas.png";
+// // import converse from "../assets/Images/converse.png";
+// // import fila from "../assets/Images/fila.png";
+// // import nike from "../assets/Images/nike.png";
+// // import reebok from "../assets/Images/reebok.png";
+// // import puma from "../assets/Images/puma.png";
+// // import new_balance from "../assets/Images/new_balance.png";
+// // import vans from "../assets/Images/vans.png";
+// // import oasis from "../assets/Images/oasis.png";
+// // import UseProducts from "./UseProducts";
+
+// // const Brands = () => {
+// //   const { products, loading, error } = UseProducts();
+
+// //   return (
+// //     <Container maxW="container.xl" py={8}>
+// //       <Box mb={8}>
+// //         <Heading as="h2" size="lg" mb={4} color={"black"} textAlign={"left"}>
+// //           Popular Brands
+// //         </Heading>
+
+// //         <Wrap spacing="20px">
+// //           {[
+// //             adidas,
+// //             nike,
+// //             puma,
+// //             fila,
+// //             new_balance,
+// //             reebok,
+// //             converse,
+// //             vans,
+// //             oasis,
+// //           ].map((brand, index) => (
+// //             <WrapItem key={index}>
+// //               <Center w="80px" h="80px">
+// //                 <Image
+// //                   src={brand}
+// //                   alt={`Brand ${index + 1}`}
+// //                   maxW="80%"
+// //                   maxH="80%"
+// //                   objectFit="contain"
+// //                 />
+// //               </Center>
+// //             </WrapItem>
+// //           ))}
+// //         </Wrap>
+// //       </Box>
+// //       <Box>
+// //         <Heading as="h2" size="lg" mb={2} color={"black"} textAlign={"left"}>
+// //           Best Deals Today
+// //         </Heading>
+
+// //         {loading ? (
+// //           <Center h="200px">
+// //             <Spinner size="xl" />
+// //           </Center>
+// //         ) : error ? (
+// //           <Center h="200px">
+// //             <Text color="red.500">Error: {error}</Text>
+// //           </Center>
+// //         ) : products.length === 0 ? (
+// //           <Center h="200px">
+// //             <Text>
+// //               No products available. Products state: {JSON.stringify(products)}
+// //             </Text>
+// //           </Center>
+// //         ) : (
+// //           <Flex
+// //             flexWrap={{ base: "wrap", md: "nowrap" }}
+// //             justifyContent="space-between"
+// //             gap={2}
+// //           >
+// //             {products.map((product) => (
+// //               <Card
+// //                 key={product.id}
+// //                 backgroundColor="white"
+// //                 maxW={{ base: "100%", sm: "180px" }}
+// //                 w="100%"
+// //               >
+// //                 <CardBody color="black" py={2}>
+// //                   <Image
+// //                     src={`https://api.timbu.cloud/images/${product.photos?.[0]?.url}`}
+// //                     alt={product.name}
+// //                     borderRadius="lg"
+// //                     fallbackSrc="https://via.placeholder.com/150"
+// //                   />
+// //                   <Text fontSize="sm" mt={1}>
+// //                     {product.name || "No name"}
+// //                   </Text>
+// //                   <Text fontSize="sm" fontWeight="bold" textAlign={"inherit"}>
+// //                     {/* ${parseFloat(product.price)?.toFixed(2) || "No price"} */
+// //                     $
+// //                     {parseFloat(product.current_price[0]?.NGN[0])?.toFixed(2) ||
+// //                       "No price"}
+// //                   </Text>
+// //                 </CardBody>
+// //                 <CardFooter pt={0} pb={2} width={"70%"}>
+// //                   <Button
+// //                     variant="outline"
+// //                     color={"grey"}
+// //                     size="sm"
+// //                     borderWidth={"1px"}
+// //                     borderColor={"grey"}
+// //                   >
+// //                     Add to cart
+// //                   </Button>
+// //                 </CardFooter>
+// //               </Card>
+// //             ))}
+// //           </Flex>
+// //         )}
+
+// //         <Divider my={16} borderColor="gray.300" borderWidth="1px" />
+// //       </Box>
+
+// //     </Container>
+// //   );
+// // };
+
+// // export default Brands;
+
+// import React, { useState } from "react";
+// import {
+//   Box,
+//   Container,
+//   Heading,
+//   Image,
+//   Flex,
+//   Text,
+//   Button,
+//   Center,
+//   Card,
+//   CardBody,
+//   CardFooter,
+//   Divider,
+//   Spinner,
+//   IconButton,
+// } from "@chakra-ui/react";
+// // import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
+// import { GoChevronLeft, GoChevronRight } from "react-icons/go";
+
+// import adidas from "../assets/Images/adidas.png";
+// import converse from "../assets/Images/converse.png";
+// import fila from "../assets/Images/fila.png";
+// import nike from "../assets/Images/nike.png";
+// import reebok from "../assets/Images/reebok.png";
+// import puma from "../assets/Images/puma.png";
+// import new_balance from "../assets/Images/new_balance.png";
+// import vans from "../assets/Images/vans.png";
+// import oasis from "../assets/Images/oasis.png";
+// import UseProducts from "./UseProducts";
+
+// const Brands = () => {
+//   const { products, loading, error } = UseProducts();
+//   const [currentProductIndex, setCurrentProductIndex] = useState(0);
+//   const [currentBrandIndex, setCurrentBrandIndex] = useState(0);
+
+//   const brands = [
+//     { name: "Adidas", image: adidas },
+//     { name: "Nike", image: nike },
+//     { name: "Puma", image: puma },
+//     { name: "Fila", image: fila },
+//     { name: "New Balance", image: new_balance },
+//     { name: "Reebok", image: reebok },
+//     { name: "Converse", image: converse },
+//     { name: "Vans", image: vans },
+//     { name: "Oasis", image: oasis },
+//   ];
+
+//   const nextItem = (setIndex, length) => {
+//     setIndex((prevIndex) => (prevIndex + 1) % length);
+//   };
+
+//   const prevItem = (setIndex, length) => {
+//     setIndex((prevIndex) => (prevIndex - 1 + length) % length);
+//   };
+
+//   const renderBrand = (brand, index) => (
+//     <Center key={index} w="80px" h="80px">
+//       <Image
+//         src={brand.image}
+//         alt={brand.name}
+//         maxW="80%"
+//         maxH="80%"
+//         objectFit="contain"
+//       />
+//     </Center>
+//   );
+
+//   const renderProduct = (product) => (
+//     <Card
+//       key={product.id}
+//       backgroundColor="white"
+//       maxW={{ base: "100%", sm: "180px" }}
+//       w="100%"
+//     >
+//       <CardBody color="black" py={2}>
+//         <Image
+//           src={`https://api.timbu.cloud/images/${product.photos?.[0]?.url}`}
+//           alt={product.name}
+//           borderRadius="lg"
+//           fallbackSrc="https://via.placeholder.com/150"
+//         />
+//         <Text fontSize="sm" mt={1}>
+//           {product.name || "No name"}
+//         </Text>
+//         <Text fontSize="sm" fontWeight="bold" textAlign={"inherit"}>
+//           $
+//           {parseFloat(product.current_price[0]?.NGN[0])?.toFixed(2) ||
+//             "No price"}
+//         </Text>
+//       </CardBody>
+//       <CardFooter pt={0} pb={2} width={"70%"}>
+//         <Button
+//           variant="outline"
+//           color={"grey"}
+//           size="sm"
+//           borderWidth={"1px"}
+//           borderColor={"grey"}
+//         >
+//           Add to cart
+//         </Button>
+//       </CardFooter>
+//     </Card>
+//   );
+
+//   return (
+//     <Container maxW="container.xl" py={8}>
+//       <Box mb={8}>
+//         <Heading as="h2" size="lg" mb={4} color={"black"} textAlign={"left"}>
+//           Popular Brands
+//         </Heading>
+
+//         <Box>
+//           <Flex
+//             display={{ base: "flex", md: "none" }}
+//             justifyContent="space-between"
+//             alignItems="center"
+//             mb={4}
+//           >
+//             <IconButton
+//               icon={<GoChevronLeft />}
+//               onClick={() => prevItem(setCurrentBrandIndex, brands.length)}
+//               isDisabled={brands.length <= 1}
+//             />
+//             {renderBrand(brands[currentBrandIndex], currentBrandIndex)}
+//             <IconButton
+//               icon={<GoChevronRight />}
+//               onClick={() => nextItem(setCurrentBrandIndex, brands.length)}
+//               isDisabled={brands.length <= 1}
+//             />
+//           </Flex>
+//           <Flex
+//             display={{ base: "none", md: "flex" }}
+//             flexWrap="wrap"
+//             justifyContent="space-between"
+//             gap={2}
+//           >
+//             {brands.map(renderBrand)}
+//           </Flex>
+//         </Box>
+//       </Box>
+
+//       <Box>
+//         <Heading as="h2" size="lg" mb={2} color={"black"} textAlign={"left"}>
+//           Best Deals Today
+//         </Heading>
+
+//         {loading ? (
+//           <Center h="200px">
+//             <Spinner size="xl" />
+//           </Center>
+//         ) : error ? (
+//           <Center h="200px">
+//             <Text color="red.500">Error: {error}</Text>
+//           </Center>
+//         ) : products.length === 0 ? (
+//           <Center h="200px">
+//             <Text>
+//               No products available. Products state: {JSON.stringify(products)}
+//             </Text>
+//           </Center>
+//         ) : (
+//           <Box>
+//             <Flex
+//               display={{ base: "flex", md: "none" }}
+//               justifyContent="space-between"
+//               alignItems="center"
+//               mb={4}
+//               gap={3}
+//             >
+//               <IconButton
+//                 icon={<GoChevronLeft />}
+//                 onClick={() =>
+//                   prevItem(setCurrentProductIndex, products.length)
+//                 }
+//                 isDisabled={products.length <= 1}
+//               />
+//               {renderProduct(products[currentProductIndex])}
+//               <IconButton
+//                 icon={<GoChevronRight />}
+//                 onClick={() =>
+//                   nextItem(setCurrentProductIndex, products.length)
+//                 }
+//                 isDisabled={products.length <= 1}
+//               />
+//             </Flex>
+//             <Flex
+//               display={{ base: "none", md: "flex" }}
+//               flexWrap="nowrap"
+//               justifyContent="space-between"
+//               gap={2}
+//               overflowX="auto"
+//             >
+//               {products.map(renderProduct)}
+//             </Flex>
+//           </Box>
+//         )}
+
+//         <Divider my={16} borderColor="gray.300" borderWidth="1px" />
+//       </Box>
+//     </Container>
+//   );
+// };
+
+// export default Brands;
+
+
+
+
+
+
+
+
+
 // import React from "react";
 // import {
 //   Box,
@@ -842,6 +1281,113 @@ export default useProducts;
             ))}
           </Flex>
         )} */}
+
+
+//   return (
+//     <Container maxW="container.xl" py={8}>
+//       <Box mb={8}>
+//         <Heading as="h2" size="lg" mb={4} color={"black"} textAlign={"left"}>
+//           Popular Brands
+//         </Heading>
+
+//         <Wrap spacing="20px">
+//           {[
+//             adidas,
+//             nike,
+//             puma,
+//             fila,
+//             new_balance,
+//             reebok,
+//             converse,
+//             vans,
+//             oasis,
+//           ].map((brand, index) => (
+//             <WrapItem key={index}>
+//               <Center w="80px" h="80px">
+//                 <Image
+//                   src={brand}
+//                   alt={`Brand ${index + 1}`}
+//                   maxW="80%"
+//                   maxH="80%"
+//                   objectFit="contain"
+//                 />
+//               </Center>
+//             </WrapItem>
+//           ))}
+//         </Wrap>
+//       </Box>
+
+//       <Box>
+//         <Heading as="h2" size="lg" mb={2} color={"black"} textAlign={"left"}>
+//           Best Deals Today
+//         </Heading>
+
+//         {loading ? (
+//           <Center h="200px">
+//             <Spinner size="xl" />
+//           </Center>
+//         ) : error ? (
+//           <Center h="200px">
+//             <Text color="red.500">Error: {error}</Text>
+//           </Center>
+//         ) : products.length === 0 ? (
+//           <Center h="200px">
+//             <Text>
+//               No products available. Products state: {JSON.stringify(products)}
+//             </Text>
+//           </Center>
+//         ) : (
+//           <Flex
+//             flexWrap={{ base: "wrap", md: "nowrap" }}
+//             justifyContent="space-between"
+//             gap={2}
+//           >
+//             {products.map((product) => (
+//               <Card
+//                 key={product.id}
+//                 backgroundColor="white"
+//                 maxW={{ base: "100%", sm: "180px" }}
+//                 w="100%"
+//               >
+//                 <CardBody color="black" py={2}>
+//                   <Image
+//                     src={`https://api.timbu.cloud/images/${product.photos?.[0]?.url}`}
+//                     alt={product.name}
+//                     borderRadius="lg"
+//                     fallbackSrc="https://via.placeholder.com/150"
+//                   />
+//                   <Text fontSize="sm" mt={1}>
+//                     {product.name || "No name"}
+//                   </Text>
+//                   <Text fontSize="sm" fontWeight="bold" textAlign={"inherit"}>
+//                     {/* ${parseFloat(product.price)?.toFixed(2) || "No price"} */}
+//                     $
+//                     {parseFloat(product.current_price[0]?.NGN[0])?.toFixed(2) ||
+//                       "No price"}
+//                   </Text>
+//                 </CardBody>
+//                 <CardFooter pt={0} pb={2} width={"70%"}>
+//                   <Button
+//                     variant="outline"
+//                     color={"grey"}
+//                     size="sm"
+//                     borderWidth={"1px"}
+//                     borderColor={"grey"}
+//                   >
+//                     Add to cart
+//                   </Button>
+//                 </CardFooter>
+//               </Card>
+//             ))}
+//           </Flex>
+//         )}
+
+//         <Divider my={16} borderColor="gray.300" borderWidth="1px" />
+//       </Box>
+//     </Container>
+//   );
+// };
+
 
 
 //------------check
@@ -1547,6 +2093,82 @@ export default useProducts;
 
 
 // ---------------testimonies
+
+
+
+
+// import React from "react";
+// import { Box, Text, Flex, VStack, HStack } from "@chakra-ui/react";
+
+// const Testimonies = () => {
+//   const stats = [
+//     { value: "15k+", label: "Outlets Worldwide" },
+//     { value: "2M+", label: "Satisfied Customers" },
+//     { value: "9M+", label: "Footwears Sold" },
+//   ];
+
+//   const testimonials = [
+//     {
+//       quote: "As a sneakerhead, Archies has really helped me realize my dream of owning a collection of various shoes. Great Collection. Truly love it!",
+//       author: "Andre",
+//     },
+//     {
+//       quote: "I recently ran about 25 pairs of sneakers and I bought them all from Archies, I will always get my sneaker here. 5 stars...",
+//       author: "Pete",
+//     },
+//     {
+//       quote: "For more than two years whenever I go to Archies, they're very considerate and friendly...",
+//       author: "Hendy",
+//     },
+//   ];
+
+//   return (
+//     <Box maxW="container.xl" mx="auto" py={8} px={8} color={"black"}> 
+//       <HStack justifyContent="space-between" mb={8}>
+//         {stats.map((stat, index) => (
+//           <VStack key={index} align="center">
+//             <Text fontSize="3xl" fontWeight="bold">
+//               {stat.value}
+//             </Text>
+//             <Text fontSize="sm" color="gray.600">
+//               {stat.label}
+//             </Text>
+//           </VStack>
+//         ))}
+//       </HStack>
+
+//       <Box mb={6}>
+//         <Text fontSize="2xl" fontWeight="bold">
+//           What Our Customers Say
+//         </Text>
+//       </Box>
+
+//       <Flex justifyContent="space-between">
+//         {testimonials.map((testimonial, index) => (
+//           <Box
+//             key={index}
+//             bg="green.100"
+//             p={4}
+//             borderRadius="md"
+//             maxW="30%"
+//           >
+//             <Text fontSize="sm" mb={2} fontStyle="italic">
+//               "{testimonial.quote}"
+//             </Text>
+//             <Text fontWeight="bold" textAlign="right">
+//               - {testimonial.author}
+//             </Text>
+//           </Box>
+//         ))}
+//       </Flex>
+//     </Box>
+//   );
+// };
+
+// export default Testimonies;
+
+
+
 // // import React from 'react';
 
 // // const Testimonies = () => {
@@ -1684,3 +2306,719 @@ export default useProducts;
 
 // export default NavBar;
 
+// import React from "react";
+// import {
+//   Box,
+//   Flex,
+//   HStack,
+//   Input,
+//   InputGroup,
+//   InputRightElement,
+//   Image,
+   
+//   Icon,
+//   Badge,
+//   Center,
+// } from "@chakra-ui/react";
+ 
+
+// import { FaUserCircle } from "react-icons/fa";
+// import { CiSearch } from "react-icons/ci";
+// import logo from "../assets/Images/logo.png";
+// import { AiFillShopping } from "react-icons/ai";
+// import {Link} from "react-router-dom"
+
+// const NavBar = () => {
+//   return (
+//     <Box as="nav" borderBottom="1px" borderColor="gray.200" py={2}>
+//       <Flex
+//         alignItems="center"
+//         justifyContent="space-between"
+//         maxW="1200px"
+//         mx="auto"
+//         // px={4}
+//       >
+//         {/* Logo */}
+//         <Image src={logo} alt="Logo" h="30px" />
+
+//         {/* Navigation Links */}
+//         <HStack spacing={6} color="gray.600" fontWeight="bold">
+//           <Link  to="/" color="green.500">
+//             Home
+//           </Link>
+//           <Link href="#">Categories</Link>
+//           <Link href="#">New Arrivals</Link>
+//           <Link href="#">Contact Us</Link>
+//           <Link href="#">Store</Link>
+//           <Link href="#">FAQ</Link>
+//         </HStack>
+
+//         {/* Search Bar */}
+
+//         <InputGroup maxW="250px" variant={"outline"}>
+//           <Input
+//             placeholder="Search item"
+//             size="sm"
+//             borderRadius="md"
+//             _placeholder={{ color: "gray.500", opacity: 1 }}
+//           />
+//           <InputRightElement height={"100%"}>
+//             <CiSearch color="gray.500" />
+//           </InputRightElement>
+//         </InputGroup>
+
+//         {/* Icons */}
+//         <HStack spacing={4}>
+//           <Box position="relative">
+//             <Icon as={AiFillShopping} w={6} h={6} color="gray.600" />
+//             <Badge
+//               position="absolute"
+//               top="-1"
+//               right="-1"
+//               borderRadius="full"
+//               bg="red.500"
+//               color="white"
+//               fontSize="xx-small"
+//             >
+//               3
+//             </Badge>
+//           </Box>
+//           <Icon as={FaUserCircle} w={5} h={5} color="gray.600" />
+//         </HStack>
+//       </Flex>
+//     </Box>
+//   );
+// };
+
+// export default NavBar;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// -----------------hero
+// import React from "react";
+// import {
+//   Box,
+//   Container,
+//   Flex,
+//   Heading,
+//   Text,
+//   Button,
+//   Image,
+//   HStack
+// } from "@chakra-ui/react";
+// import heroFoot from "../assets/Images/foot.png";
+// import { Link } from "react-router-dom";
+
+// const Hero = () => {
+//   return (
+//     <Box bg="#EDF4EA" height={"35rem"}>
+//       <Container maxW="container.xl">
+//         <Flex
+//           direction={{ base: "column", md: "row" }}
+//           alignItems="center"
+//           justify="space-between"
+//           minH={{ base: "auto", md: "400px" }}
+//         >
+//           <Box maxW={{ base: "100%", md: "50%" }} mb={{ base: 8, md: 0 }}>
+//             <Heading as="h1" size="2xl" color="green.800" mb={4}>
+//               All your favorite sneakers, in one place.
+//             </Heading>
+//             <Text fontSize="lg" color="gray.600" mb={6}>
+//               Exclusively for sneakerheads of all ages, gender, and the rest of
+//               humanity
+//             </Text>
+//             <HStack>
+//               <Link to="/product_detail">
+//                 <Button
+//                   colorScheme={"green"}
+//                   size="lg"
+//                   px={8}
+//                   _hover={{ bg: "green.600" }}
+//                 >
+//                   Explore
+//                 </Button>
+//               </Link>
+//             </HStack>
+//           </Box>
+//           <Box maxW={{ base: "100%", md: "45%" }}>
+//             <Image src={heroFoot} alt="Sneakers" objectFit="cover" w="full" />
+//           </Box>
+//         </Flex>
+//       </Container>
+//     </Box>
+//   );
+// };
+
+// export default Hero;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React from "react";
+// import {
+//   Box,
+//   Container,
+//   Heading,
+//   Image,
+//   Flex,
+//   Text,
+//   Button,
+//   Wrap,
+//   WrapItem,
+//   Center,
+//   Card,
+//   CardBody,
+//   CardFooter,
+//   Divider,
+//   Spinner,
+//   IconButton,
+// } from "@chakra-ui/react";
+
+// import { GoChevronLeft, GoChevronRight } from "react-icons/go";
+// import Slider from "react-slick";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
+
+// // import adidas from "../assets/Images/adidas.png";
+// // import converse from "../assets/Images/converse.png";
+// // import fila from "../assets/Images/fila.png";
+// // import nike from "../assets/Images/nike.png";
+// // import reebok from "../assets/Images/reebok.png";
+// // import puma from "../assets/Images/puma.png";
+// // import new_balance from "../assets/Images/new_balance.png";
+// // import vans from "../assets/Images/vans.png";
+// // import oasis from "../assets/Images/oasis.png";
+// import UseProducts from "./UseProducts";
+
+// const Brands = () => {
+//   const { products, loading, error } = UseProducts();
+
+//   const sliderSettings = {
+//     dots: false,
+//     infinite: false,
+//     speed: 500,
+//     slidesToShow: 4,
+//     slidesToScroll: 1,
+//     responsive: [
+//       {
+//         breakpoint: 1024,
+//         settings: {
+//           slidesToShow: 3,
+//         },
+//       },
+//       {
+//         breakpoint: 768,
+//         settings: {
+//           slidesToShow: 2,
+//         },
+//       },
+//       {
+//         breakpoint: 480,
+//         settings: {
+//           slidesToShow: 1,
+//         },
+//       },
+//     ],
+//   };
+
+//   const slider = React.useRef(null);
+
+//   return (
+//     <Container maxW="container.xl" py={8}>
+//       {/* Popular Brands section remains the same */}
+
+//       <Box position="relative">
+//         <Heading as="h2" size="lg" mb={2} color={"black"} textAlign={"left"}>
+//           Best Deals Today
+//         </Heading>
+
+//         {loading ? (
+//           <Center h="200px">
+//             <Spinner size="xl" />
+//           </Center>
+//         ) : error ? (
+//           <Center h="200px">
+//             <Text color="red.500">Error: {error}</Text>
+//           </Center>
+//         ) : products.length === 0 ? (
+//           <Center h="200px">
+//             <Text>No products available.</Text>
+//           </Center>
+//         ) : (
+//           <>
+//             <Slider ref={slider} {...sliderSettings}>
+//               {products.map((product) => (
+//                 <Box key={product.id} px={2}>
+//                   <Card backgroundColor="white" h="100%">
+//                     <CardBody color="black" py={2}>
+//                       <Image
+//                         src={`https://api.timbu.cloud/images/${product.photos?.[0]?.url}`}
+//                         alt={product.name}
+//                         borderRadius="lg"
+//                         fallbackSrc="https://via.placeholder.com/150"
+//                       />
+//                       <Text fontSize="sm" mt={1}>
+//                         {product.name || "No name"}
+//                       </Text>
+//                       <Text
+//                         fontSize="sm"
+//                         fontWeight="bold"
+//                         textAlign={"inherit"}
+//                       >
+//                         $
+//                         {parseFloat(product.current_price[0]?.NGN[0])?.toFixed(
+//                           2
+//                         ) || "No price"}
+//                       </Text>
+//                     </CardBody>
+//                     <CardFooter pt={0} pb={2}>
+//                       <Button
+//                         variant="outline"
+//                         color={"grey"}
+//                         size="sm"
+//                         borderWidth={"1px"}
+//                         borderColor={"grey"}
+//                         width="100%"
+//                       >
+//                         Add to cart
+//                       </Button>
+//                     </CardFooter>
+//                   </Card>
+//                 </Box>
+//               ))}
+//             </Slider>
+//             <IconButton
+//               aria-label="left-arrow"
+//               icon={<GoChevronLeft />}
+//               position="absolute"
+//               left={-5}
+//               top="50%"
+//               transform={"translate(0%, -50%)"}
+//               zIndex={2}
+//               onClick={() => slider?.current?.slickPrev()}
+//             />
+//             <IconButton
+//               aria-label="right-arrow"
+//               icon={<GoChevronRight />}
+//               position="absolute"
+//               right={-5}
+//               top="50%"
+//               transform={"translate(0%, -50%)"}
+//               zIndex={2}
+//               onClick={() => slider?.current?.slickNext()}
+//             />
+//           </>
+//         )}
+
+//         <Divider my={16} borderColor="gray.300" borderWidth="1px" />
+//       </Box>
+//     </Container>
+//   );
+// };
+
+// export default Brands;
+
+
+
+// --------------product section
+
+
+// import React from "react";
+// import {
+//   Box,
+//   Container,
+//   Heading,
+//   Image,
+//   Flex,
+//   Text,
+//   Button,
+//   Wrap,
+//   WrapItem,
+//   Center,
+//   Card,
+//   CardBody,
+//   CardFooter,
+//   Spinner,
+//   Divider,
+// } from "@chakra-ui/react";
+
+// import adidas from "../assets/Images/adidas.png";
+// import converse from "../assets/Images/converse.png";
+// import fila from "../assets/Images/fila.png";
+// import nike from "../assets/Images/nike.png";
+// import reebok from "../assets/Images/reebok.png";
+// import puma from "../assets/Images/puma.png";
+// import new_balance from "../assets/Images/new_balance.png";
+// import vans from "../assets/Images/vans.png";
+// import oasis from "../assets/Images/oasis.png";
+// import featherStep from "../assets/Images/featherStep.png";
+// import retroAir from "../assets/Images/retroAir.png";
+// import new_balancee from "../assets/Images/new_balancee.png";
+// import adidasZX from "../assets/Images/adidasZX.png";
+// import retroAdidas from "../assets/Images/retroAdidas.png";
+// import { Link } from "react-router-dom";
+// import UseProducts from "./UseProducts";
+
+// // const products = [
+// //   { id: 1, name: "Feather Step Classic", price: 259.99, image: featherStep },
+// //   { id: 2, name: "Retro Air Glide", price: 199.99, image: retroAir },
+// //   { id: 3, name: "New Balance Urban", price: 179.99, image: new_balancee },
+// //   { id: 4, name: "Adidas ZX Comfort", price: 149.99, image: adidasZX },
+// //   { id: 5, name: "Retro Adidas Sprint", price: 229.99, image: retroAdidas },
+// // ];
+
+// const ProductSection = () => {
+//   const { products, loading, error } = UseProducts();
+//   return (
+  
+
+//     <Container maxW="container.xl" py={8}>
+//       <Box mb={8}>
+//         <Heading as="h2" size="lg" mb={4} color={"black"} textAlign={"left"}>
+//           Popular Brands
+//         </Heading>
+
+//         <Wrap spacing="20px">
+//           {[
+//             adidas,
+//             nike,
+//             puma,
+//             fila,
+//             new_balance,
+//             reebok,
+//             converse,
+//             vans,
+//             oasis,
+//           ].map((brand, index) => (
+//             <WrapItem key={index}>
+//               <Center w="80px" h="80px">
+//                 <Image
+//                   src={brand}
+//                   alt={`Brand ${index + 1}`}
+//                   maxW="80%"
+//                   maxH="80%"
+//                   objectFit="contain"
+//                 />
+//               </Center>
+//             </WrapItem>
+//           ))}
+//         </Wrap>
+//       </Box>
+
+//       <Box>
+//         <Heading as="h2" size="lg" mb={2} color={"black"} textAlign={"left"}>
+//           Best Deals Today
+//         </Heading>
+
+      
+
+//         {loading ? (
+//           <Center h="200px">
+//             <Spinner size="xl" />
+//           </Center>
+//         ) : error ? (
+//           <Center h="200px">
+//             <Text color="red.500">Error: {error}</Text>
+//           </Center>
+//         ) : products.length === 0 ? (
+//           <Center h="200px">
+//             <Text>
+//               No products available. Products state: {JSON.stringify(products)}
+//             </Text>
+//           </Center>
+//         ) : (
+//           <Flex
+//             flexWrap={{ base: "wrap", md: "nowrap" }}
+//             justifyContent="space-between"
+//             gap={2}
+//           >
+//             {products.map((product) => (
+//               <Card
+//                 key={product.id}
+//                 backgroundColor="white"
+//                 maxW={{ base: "100%", sm: "180px" }}
+//                 w="100%"
+//               >
+//                 <CardBody color="black" py={2}>
+//                   <Image
+//                     src={`https://api.timbu.cloud/images/${product.photos?.[0]?.url}`}
+//                     alt={product.name}
+//                     borderRadius="lg"
+//                     fallbackSrc="https://via.placeholder.com/150"
+//                   />
+//                   <Text fontSize="sm" mt={1}>
+//                     {product.name || "No name"}
+//                   </Text>
+//                   <Text fontSize="sm" fontWeight="bold" textAlign={"inherit"}>
+//                     {/* ${parseFloat(product.price)?.toFixed(2) || "No price"} */}
+//                     $
+//                     {parseFloat(product.current_price[0]?.NGN[0])?.toFixed(2) ||
+//                       "No price"}
+//                   </Text>
+//                 </CardBody>
+//                 <CardFooter pt={0} pb={2} width={"70%"}>
+//                   <Button
+//                     variant="outline"
+//                     color={"grey"}
+//                     size="sm"
+//                     borderWidth={"1px"}
+//                     borderColor={"grey"}
+//                   >
+//                     Add to cart
+//                   </Button>
+//                 </CardFooter>
+//               </Card>
+//             ))}
+//           </Flex>
+//         )}
+
+//         <Divider my={16} borderColor="gray.300" borderWidth="1px" />
+//       </Box>
+//     </Container>
+//   );
+// };
+
+// export default ProductSection;
+
+
+
+
+
+// ---------------foooter
+// import { Box, Flex, VStack, Text, Link, Image,Button, } from "@chakra-ui/react";
+// import leftImage from "../assets/Images/leftImage.png"
+// import rightImage from "../assets/Images/rightImage.png"
+// function Footer() {
+//   return (
+//     <Box
+//     bg="#C9D4C5"
+//     py={8}
+//     px={8}
+//     position="relative"
+//     overflow="hidden"
+//     my={8}
+//   >
+//     <Flex
+//       maxW="container.xl"
+//       mx="auto"
+//       alignItems="center"
+//       justifyContent="center"
+//       position="relative"
+//       minHeight="200px"
+//     >
+
+
+
+
+
+
+// <Box as="footer"   color={"black"} bg={"none"}   >
+//       <Flex maxW="container.xl" mx="auto" justifyContent="space-between" gap={4}>
+//         <VStack align="flex-start">
+//           <Text fontWeight="bold">About Us</Text>
+//           <Link>Our Story</Link>
+//           <Link>Contact</Link>
+//           <Link>Careers</Link>
+//           <Link>News and Blog</Link>
+//           <Link>Press</Link>
+//           <Link>Advertise and Partners</Link>
+//         </VStack>
+        
+//         <VStack align="flex-start">
+//           <Text fontWeight="bold">Services</Text>
+//           <Link>Gift Cards</Link>
+//           <Link>Mobile App</Link>
+//           <Link>Shipping and Delivery</Link>
+//           <Link>Order Pickup</Link>
+//           <Link>Account Signup</Link>
+//         </VStack>
+        
+//         <VStack align="flex-start">
+//           <Text fontWeight="bold">Help</Text>
+//           <Link>Help Center</Link>
+//           <Link>Returns</Link>
+//           <Link>Track Orders</Link>
+//           <Link>Size Charts</Link>
+//           <Link>Contact Us</Link>
+//           <Link>Security and Fraud</Link>
+//         </VStack>
+        
+//         <VStack align="flex-start">
+//           <Text fontWeight="bold">Social</Text>
+//           <Link>Instagram</Link>
+//           <Link>Twitter</Link>
+//           <Link>Facebook</Link>
+//           <Link>Pinterest</Link>
+//           <Link>Blog</Link>
+//         </VStack>
+//       </Flex>
+      
+//       </Box>
+
+
+
+
+
+
+
+
+
+
+//       <Image
+//         src={leftImage}
+//         alt="Left shoe"
+//         position="absolute"
+//         left="-20px"
+//         top={"-15px"}
+//         bottom="0"
+//         height="120%"
+//         objectFit="contain"
+//         zIndex={0}
+//       />
+
+//       <Image
+//         src={rightImage}
+//         alt="Right shoe"
+//         position="absolute"
+//         right="-20px"
+//         bottom="0"
+//         height="120%"
+//         objectFit="contain"
+//         zIndex={0}
+//       />
+//     </Flex>
+//   </Box>
+//   );
+// }
+
+// export default Footer;
+
+
+
+
+// ---------statistics
+// import React from "react";
+// import { Box, Text, Button, Flex, Image } from "@chakra-ui/react";
+// import leftImage from "../assets/Images/leftImage.png";
+// import rightImage from "../assets/Images/rightImage.png";
+
+// const Statistics = () => {
+//   return (
+//     <Box
+//       bg="#C9D4C5"
+//       py={8}
+//       px={8}
+//       position="relative"
+//       overflow="hidden"
+//       my={8}
+//     >
+//       <Flex
+//         maxW="container.xl"
+//         mx="auto"
+//         alignItems="center"
+//         justifyContent="center"
+//         position="relative"
+//         minHeight="200px"
+//       >
+//         <Box
+//           bg="green.700"
+//           color="white"
+//           p={6}
+//           borderRadius="md"
+//           maxWidth="70%"
+//           zIndex={1}
+//           textAlign="center"
+//         >
+//           <Text fontSize="2xl" fontWeight="bold" mb={2}>
+//             Get up to 15% off on all items above $300
+//           </Text>
+//           <Button colorScheme="white" variant="outline">
+//             Learn More
+//           </Button>
+//         </Box>
+
+//         <Image
+//           src={leftImage}
+//           alt="Left shoe"
+//           position="absolute"
+//           left="-20px"
+//           top={"-15px"}
+//           bottom="0"
+//           height="120%"
+//           objectFit="contain"
+//           zIndex={0}
+//         />
+
+//         <Image
+//           src={rightImage}
+//           alt="Right shoe"
+//           position="absolute"
+//           right="-20px"
+//           bottom="0"
+//           height="120%"
+//           objectFit="contain"
+//           zIndex={0}
+//         />
+//       </Flex>
+//     </Box>
+//   );
+// };
+
+// export default Statistics;

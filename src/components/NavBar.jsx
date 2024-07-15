@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Flex,
@@ -7,20 +7,31 @@ import {
   InputGroup,
   InputRightElement,
   Image,
-   
   Icon,
   Badge,
-  Center,
+  IconButton,
+  Drawer,
+  DrawerBody,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  VStack,
+  useDisclosure,
 } from "@chakra-ui/react";
- 
 
 import { FaUserCircle } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
-import logo from "../assets/Images/logo.png";
 import { AiFillShopping } from "react-icons/ai";
-import {Link} from "react-router-dom"
+import { FiMenu } from "react-icons/fi";
+
+import { Link } from "react-router-dom";
+import logo from "../assets/Images/logo.png";
 
 const NavBar = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [placement] = useState("right");
+
   return (
     <Box as="nav" borderBottom="1px" borderColor="gray.200" py={2}>
       <Flex
@@ -28,26 +39,34 @@ const NavBar = () => {
         justifyContent="space-between"
         maxW="1200px"
         mx="auto"
-        // px={4}
+        px={4}
       >
         {/* Logo */}
         <Image src={logo} alt="Logo" h="30px" />
 
-        {/* Navigation Links */}
-        <HStack spacing={6} color="gray.600" fontWeight="bold">
-          <Link  to="/" color="green.500">
+   
+        <HStack
+          spacing={6}
+          color="gray.600"
+          fontWeight="bold"
+          display={{ base: "none", md: "flex" }}
+        >
+          <Link to="/" color="green.500">
             Home
           </Link>
-          <Link href="#">Categories</Link>
-          <Link href="#">New Arrivals</Link>
-          <Link href="#">Contact Us</Link>
-          <Link href="#">Store</Link>
-          <Link href="#">FAQ</Link>
+          <Link to="#">Categories</Link>
+          <Link to="#">New Arrivals</Link>
+          <Link to="#">Contact Us</Link>
+          <Link to="#">Store</Link>
+          <Link to="#">FAQ</Link>
         </HStack>
 
-        {/* Search Bar */}
-
-        <InputGroup maxW="250px" variant={"outline"}>
+        
+        <InputGroup
+          maxW="250px"
+          variant={"outline"}
+          display={{ base: "none", md: "flex" }}
+        >
           <Input
             placeholder="Search item"
             size="sm"
@@ -59,7 +78,7 @@ const NavBar = () => {
           </InputRightElement>
         </InputGroup>
 
-        {/* Icons */}
+        {/* Icons - Always visible */}
         <HStack spacing={4}>
           <Box position="relative">
             <Icon as={AiFillShopping} w={6} h={6} color="gray.600" />
@@ -76,8 +95,56 @@ const NavBar = () => {
             </Badge>
           </Box>
           <Icon as={FaUserCircle} w={5} h={5} color="gray.600" />
+
+          <IconButton
+            icon={<FiMenu />}
+            aria-label="Open Menu"
+            display={{ base: "flex", md: "none" }}
+            onClick={onOpen}
+          />
         </HStack>
       </Flex>
+
+      <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerHeader borderBottomWidth="1px">Menu</DrawerHeader>
+          <DrawerBody>
+            <VStack spacing={4} align="stretch">
+              <Link to="/" onClick={onClose}>
+                Home
+              </Link>
+              <Link to="#" onClick={onClose}>
+                Categories
+              </Link>
+              <Link to="#" onClick={onClose}>
+                New Arrivals
+              </Link>
+              <Link to="#" onClick={onClose}>
+                Contact Us
+              </Link>
+              <Link to="#" onClick={onClose}>
+                Store
+              </Link>
+              <Link to="#" onClick={onClose}>
+                FAQ
+              </Link>
+              <InputGroup variant={"outline"}>
+                <Input
+                  placeholder="Search item"
+                  size="sm"
+                  borderRadius="md"
+                  _placeholder={{ color: "gray.500", opacity: 1 }}
+                />
+                <InputRightElement height={"100%"}>
+                  <CiSearch color="gray.500" />
+                </InputRightElement>
+              </InputGroup>
+            </VStack>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
     </Box>
   );
 };

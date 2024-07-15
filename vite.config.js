@@ -1,9 +1,5 @@
-
-
-
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import https from 'https';
+import react from "@vitejs/plugin-react"; // This line has been corrected
 
 export default defineConfig({
   plugins: [react()],
@@ -12,6 +8,7 @@ export default defineConfig({
       "/api": {
         target: "https://api.timbu.cloud",
         changeOrigin: true,
+        secure: false,
         rewrite: (path) => path.replace(/^\/api/, ""),
         configure: (proxy, _options) => {
           proxy.on("proxyReq", (proxyReq, req, _res) => {
@@ -20,8 +17,6 @@ export default defineConfig({
             });
           });
         },
-        secure: false,   
-        agent: new https.Agent({ rejectUnauthorized: false })   
       },
     },
   },

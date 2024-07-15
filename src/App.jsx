@@ -11,10 +11,8 @@ import ProductSection from "./components/ProductSection";
 import Statistics from "./components/Statistics";
 import Footer from "./components/Footer";
 import Testimonies from "./components/Testimonies";
-import ProductDetail from "./components/ProductDetail";
-import CartPage from "./components/CartPage";
-// import Check from "./components/Check";
-// import UseProducts from "./components/UseProducts";
+// import ProductDetail from "./components/ProductDetail";
+// import CartPage from "./components/CartPage";
 
 function App() {
   return (
@@ -32,12 +30,10 @@ function App() {
               <Route path="/brands" element={<Brands />} />
               <Route path="/product" element={<ProductSection />} />
               <Route path="/statistics" element={<Statistics />} />
-              <Route path="/footer" element={<Footer />} />
               <Route path="/testimonies" element={<Testimonies />} />
-              <Route path="/product_detail" element={<ProductDetail />} />
-              <Route path="/cart_page" element={<CartPage />} />
-              {/* <Route path="/check" element={<Check />} /> */}
-              {/* <UseProducts /> */}
+              <Route path="/footer" element={<Footer />} />
+              {/* <Route path="/product_detail" element={<ProductDetail />} /> */}
+              {/* <Route path="/cart_page" element={<CartPage />} /> */}
             </Routes>
           </main>
         </Router>
