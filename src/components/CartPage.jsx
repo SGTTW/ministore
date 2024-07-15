@@ -19,7 +19,6 @@ import {
 import { MdDelete } from "react-icons/md";
 
 
-// Assume these imports for your product images
 import product1 from "../assets/Images/adidas.png";
 import product2 from "../assets/Images/adidas.png";
 import product3 from "../assets/Images/adidas.png";
