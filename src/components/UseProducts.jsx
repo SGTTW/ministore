@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const UseProducts = () => {
   const [products, setProducts] = useState([]);
@@ -16,19 +16,32 @@ const UseProducts = () => {
         },
       }
     )
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        return res.json();
-      })
+      // .then((res) => {
+      //   if (!res.ok) {
+      //     throw new Error(`HTTP error! status: ${res.status}`);
+      //   }
+      //   return res.json();
+      // })
+      // .then((data) => {
+      //   setProducts(data.items || []);
+      //   setLoading(false);
+      // })
+      // .catch((error) => {
+      //   console.error("Error fetching data:", error);
+      //   setError(error.message);
+      //   setLoading(false);
+      // });
+
+      // let's temporary remove the error handling
+      .then((res) => res.json())
       .then((data) => {
+        console.log("API response:", data);
         setProducts(data.items || []);
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
-        setError(error.message);
+        console.error("Full error:", error);
+        setError(error.toString());
         setLoading(false);
       });
   }, []);
